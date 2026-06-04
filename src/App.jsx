@@ -45,7 +45,10 @@ function App() {
       const response = await fetch('http://127.0.0.1:8000/api/v1/query', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({question: newChat[newChat.length - 1].text}),
+        body: JSON.stringify({
+          question: newChat[newChat.length - 1].text,
+          filename: file ? file.name : null
+        }),
       });
 
       const data = await response.json();
@@ -78,7 +81,7 @@ function App() {
       {/* LEFT PANEL: UPLOAD */}
       <div style={{width: "30%", padding: "2rem", backgroundColor: "#ffffff", borderRight: "1px solid #e4e4e7"}}>
         <h2 style={{color: "#18181b"}}>Smart Document Insights</h2>
-        <p style={{color: "#71717a", fontSize: "14px", marginBottom: "2rem"}}>Powerd by FastAPI & </p>
+        <p style={{color: "#71717a", fontSize: "14px", marginBottom: "2rem"}}>Powered by FastAPI & pgvector</p>
 
         <form onSubmit={handleUpload} style={{display: "flex", flexDirection: "column", gap: "1rem"}}>
           <div style={{ border: '2px dashed #d4d4d8', padding: '2rem', textAlign: 'center', borderRadius: '8px' }}>
